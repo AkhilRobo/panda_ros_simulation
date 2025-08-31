@@ -1,3 +1,16 @@
 
 .vscode/browse.vc.db
 .vscode/browse.vc.db
+
+# ROS 2 build folders
+build/
+install/
+log/
+
+# Editor and IDE temporary files
+.vscode/
+
+# Other common ignore files
+*.launch
+*.pyc
+*.db
