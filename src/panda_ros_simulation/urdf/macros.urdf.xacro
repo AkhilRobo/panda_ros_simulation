@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+    <!-- Macro for creating links -->
+    <xacro:macro name="panda_link" params="lname vmesh cmesh imesh color">
+        <link name="${lname}">
+            <visual>
+                <geometry>
+                    <mesh filename="${vmesh}" scale="1 1 1" />
+                </geometry>
+                <material name="${color}" />
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="${cmesh}" scale="1 1 1" />
+                </geometry>
+            </collision>
+            <xacro:panda_inertial mesh="${imesh}" mesh_offset_rpy="0 0 0" />
+        </link>
+    </xacro:macro>
+
+    <!-- Macro for joining the links -->
+    <xacro:macro name="panda_joint"
+        params="
+parent 
+child 
+joint_name 
+joint_type 
+joint_origin_xyz:=unset
+joint_origin_rpy:=unset
+joint_axis_xyz:=unset
+joint_lower_limit:=unset
+joint_upper_limit:=unset
+joint_velocity_limit:=unset
+joint_torque_limit:=unset
+joint_damping:=0.0
+joint_friction:=0.0
+">
+        <joint name="${joint_name}" type="${joint_type}">
+
+            <parent link="${parent}" />
+            <child link="${child}" />
+
+            <xacro:if value="${joint_origin_xyz != 'unset' and joint_origin_rpy != 'unset'}">
+                <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}" />
+            </xacro:if>
+
+            <xacro:unless value="${joint_type == 'fixed'}">
+                <xacro:if value="${joint_axis_xyz != 'unset'}">
+                    <axis xyz="${joint_axis_xyz}" />
+                </xacro:if>
+
+                <xacro:if value="${joint_type == 'continuous'}">
+                    <limit effort="${joint_torque_limit}" velocity="${joint_velocity_limit}" />
+                </xacro:if>
+
+                <xacro:unless value="${joint_type == 'continuous'}">
+                    <limit lower="${joint_lower_limit}" upper="${joint_upper_limit}"
+                        effort="${joint_torque_limit}" velocity="${joint_velocity_limit}" />
+                </xacro:unless>
+
+                <dynamics damping="${joint_damping}" friction="${joint_friction}" />
+            </xacro:unless>
+
+        </joint>
+
+        <xacro:unless value="${joint_type == 'fixed'}">
+            <transmission name="${joint_name}_transmission">
+
+                <type>transmission_interface/SimpleTransmission</type>
+
+                <joint name="${joint_name}">
+                    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                </joint>
+
+                <actuator name="${joint_name}_actuator">
+                    <mechanicalReduction>1.0</mechanicalReduction>
+                    <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+                </actuator>
+
+            </transmission>
+        </xacro:unless>
+
+    </xacro:macro>
+
+    <!-- Macro for creating a vertual link , maily its used for placing any endeffector to the TCP
+    created by this company -->
+    <xacro:macro name="panda_virtual_link"
+        params="
+    parent
+    link_name
+    joint_origin_xyz
+    joint_origin_rpy
+    gazebo_preserve_fixed_joint:=false
+  ">
+
+        <link name="${link_name}">
+            <xacro:if value="${gazebo_preserve_fixed_joint}">
+                <inertial>
+                    <mass value="1e-5" />
+                    <inertia ixx="1e-35" iyy="1e-35" izz="1e-35" ixy="0.0" ixz="0.0" iyz="0.0" />
+                </inertial>
+            </xacro:if>
+        </link>
+
+        <joint name="${link_name}_virtual_joint" type="fixed">
+            <parent link="${parent}" />
+            <child link="${link_name}" />
+            <origin xyz="${joint_origin_xyz}" rpy="${joint_origin_rpy}" />
+        </joint>
+
+        <xacro:if value="${gazebo_preserve_fixed_joint}">
+            <gazebo reference="${link_name}_virtual_joint">
+                <preserveFixedJoint>true</preserveFixedJoint>
+                <disableFixedJointLumping>true</disableFixedJointLumping>
+            </gazebo>
+        </xacro:if>
+
+    </xacro:macro>
+</robot>

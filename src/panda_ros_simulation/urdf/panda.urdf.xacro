@@ -1,165 +1,299 @@
 <?xml version="1.0"?>
 <robot name="franka_panda" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="mesh_pkg_visual" value="package://panda_ros_simulation/meshes/visual"/>
-  <xacro:property name="mesh_pkg_collision" value="package://panda_ros_simulation/meshes/collision"/>
-  <xacro:property name="mesh_pkg_description" value="package://panda_ros_simulation/urdf"/>
+  <xacro:property name="mesh_pkg_visual" value="package://panda_ros_simulation/meshes/visual" />
+  <xacro:property name="mesh_pkg_collision" value="package://panda_ros_simulation/meshes/collision" />
+  <xacro:property name="mesh_pkg_description" value="package://panda_ros_simulation/urdf" />
 
- 
-  <xacro:include filename="$(find panda_ros_simulation)/urdf/props.urdf.xacro"/>
 
-  <material name="panda_gray"><color rgba="0.7 0.7 0.7 1"/></material>
-  <material name="panda_dark"><color rgba="0.2 0.2 0.2 1"/></material>
-  <material name="panda_white"><color rgba="0.95 0.95 0.95 1"/></material>
+  <xacro:include filename="$(find panda_ros_simulation)/urdf/macros.urdf.xacro" />
+  <xacro:include filename="$(find panda_ros_simulation)/urdf/props.urdf.xacro" />
+  <xacro:include filename="$(find panda_ros_simulation)/urdf/gripper.urdf.xacro" />
+    <material name="panda_gray">
+        <color rgba="0.7 0.7 0.7 1" />
+    </material>
+    <material name="panda_dark">
+        <color rgba="0.2 0.2 0.2 1" />
+    </material>
+    <material name="panda_white">
+        <color rgba="0.95 0.95 0.95 1" />
+    </material>
 
-<xacro:macro name="panda_link" params="lname vmesh cmesh imesh color mass ixx iyy izz">
-    <link name="${lname}">
-      <visual>
-        <geometry><mesh filename="${vmesh}" scale="1 1 1"/></geometry>
-        <material name="${color}"/>
-      </visual>
-      <collision>
-        <geometry><mesh filename="${cmesh}" scale="1 1 1"/></geometry>
-      </collision>
-      <xacro:panda_inertial mesh="${imesh}" mesh_offset_rpy="0 0 0"/>
-    </link>
-</xacro:macro>
- <link name="world"/>
-  
-  <link name="base_link"/>
-  
-  <joint name="world_to_base" type="fixed">
-    <parent link="world"/>
-    <child link="base_link"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  <!-- <link name="world" /> -->
 
-  <xacro:panda_link lname="panda_link0" vmesh="${mesh_pkg_visual}/link0.dae" cmesh="${mesh_pkg_collision}/link0.stl" imesh="${link0_mesh}" color="panda_dark" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link1" vmesh="${mesh_pkg_visual}/link1.dae" cmesh="${mesh_pkg_collision}/link1.stl" imesh="${link1_mesh}" color="panda_gray" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link2" vmesh="${mesh_pkg_visual}/link2.dae" cmesh="${mesh_pkg_collision}/link2.stl" imesh="${link2_mesh}"  color="panda_white" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link3" vmesh="${mesh_pkg_visual}/link3.dae" cmesh="${mesh_pkg_collision}/link3.stl" imesh="${link3_mesh}"  color="panda_gray" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link4" vmesh="${mesh_pkg_visual}/link4.dae" cmesh="${mesh_pkg_collision}/link4.stl" imesh="${link4_mesh}"  color="panda_white" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link5" vmesh="${mesh_pkg_visual}/link5.dae" cmesh="${mesh_pkg_collision}/link5.stl" imesh="${link5_mesh}"  color="panda_gray" mass="1.0" ixx="0.01" iyy="0.01" izz="0.01"/>
-  <xacro:panda_link lname="panda_link6" vmesh="${mesh_pkg_visual}/link6.dae" cmesh="${mesh_pkg_collision}/link6.stl" imesh="${link6_mesh}"  color="panda_white" mass="0.8" ixx="0.008" iyy="0.008" izz="0.008"/>
-  <xacro:panda_link lname="panda_link7" vmesh="${mesh_pkg_visual}/link7.dae" cmesh="${mesh_pkg_collision}/link7.stl" imesh="${link7_mesh}"  color="panda_dark" mass="0.6" ixx="0.006" iyy="0.006" izz="0.006"/>
-  <xacro:panda_link lname="panda_hand" vmesh="${mesh_pkg_visual}/hand.dae" cmesh="${mesh_pkg_collision}/hand.stl" imesh="${hand_mesh}"   color="panda_dark" mass="0.2" ixx="0.002" iyy="0.002" izz="0.002"/>
-  <xacro:panda_link lname="panda_leftfinger" vmesh="${mesh_pkg_visual}/finger.dae" cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}"  color="panda_gray" mass="0.05" ixx="0.0005" iyy="0.0005" izz="0.0005"/>
-  <xacro:panda_link lname="panda_rightfinger" vmesh="${mesh_pkg_visual}/finger.dae" cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}"  color="panda_gray" mass="0.05" ixx="0.0005" iyy="0.0005" izz="0.0005"/>
-  
-  <link name="panda_link8"/>
+  <link name="base_link" />
 
-  <joint name="base_to_panda_mount" type="fixed">
-    <parent link="base_link"/>
-    <child link="panda_link0"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  <!-- <joint name="world_to_base" type="fixed">
+    <parent link="world" />
+    <child link="base_link" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint> -->
 
-  <joint name="panda_joint1" type="revolute">
-    <parent link="panda_link0"/>
-    <child link="panda_link1"/>
-    <origin xyz="0 0 0.33" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-2.8973" upper="2.8973" effort="87" velocity="2.175"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint2" type="revolute">
-    <parent link="panda_link1"/>
-    <child link="panda_link2"/>
-    <origin xyz="0 0 0" rpy="-1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-1.7628" upper="1.7628" effort="87" velocity="2.175"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint3" type="revolute">
-    <parent link="panda_link2"/>
-    <child link="panda_link3"/>
-    <origin xyz="0 -0.316 0" rpy="1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-2.8973" upper="2.8973" effort="87" velocity="2.175"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint4" type="revolute">
-    <parent link="panda_link3"/>
-    <child link="panda_link4"/>
-    <origin xyz="0.0825 0 0" rpy="1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-2.0718" upper="-0.0698" effort="87" velocity="2.175"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint5" type="revolute">
-    <parent link="panda_link4"/>
-    <child link="panda_link5"/>
-    <origin xyz="-0.0825 0.384 0" rpy="-1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-2.8973" upper="2.8973" effort="12" velocity="2.61"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint6" type="revolute">
-    <parent link="panda_link5"/>
-    <child link="panda_link6"/>
-    <origin xyz="0 0 0" rpy="1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-0.0175" upper="3.7525" effort="12" velocity="2.61"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="panda_joint7" type="revolute">
-    <parent link="panda_link6"/>
-    <child link="panda_link7"/>
-    <origin xyz="0.088 0 0" rpy="1.5708 0 0"/>
-    <axis xyz="0 0 1"/>
-    <limit lower="-2.8973" upper="2.8973" effort="12" velocity="2.61"/>
-    <dynamics damping="1.0" friction="1.0"/>
-  </joint>
+  <xacro:panda_link lname="panda_link0" vmesh="${mesh_pkg_visual}/link0.dae"
+    cmesh="${mesh_pkg_collision}/link0.stl" imesh="${link0_mesh}" color="panda_dark" />
+  <xacro:panda_link lname="panda_link1" vmesh="${mesh_pkg_visual}/link1.dae"
+    cmesh="${mesh_pkg_collision}/link1.stl" imesh="${link1_mesh}" color="panda_gray" />
+  <xacro:panda_link lname="panda_link2" vmesh="${mesh_pkg_visual}/link2.dae"
+    cmesh="${mesh_pkg_collision}/link2.stl" imesh="${link2_mesh}" color="panda_white" />
+  <xacro:panda_link lname="panda_link3" vmesh="${mesh_pkg_visual}/link3.dae"
+    cmesh="${mesh_pkg_collision}/link3.stl" imesh="${link3_mesh}" color="panda_gray" />
+  <xacro:panda_link lname="panda_link4" vmesh="${mesh_pkg_visual}/link4.dae"
+    cmesh="${mesh_pkg_collision}/link4.stl" imesh="${link4_mesh}" color="panda_white" />
+  <xacro:panda_link lname="panda_link5" vmesh="${mesh_pkg_visual}/link5.dae"
+    cmesh="${mesh_pkg_collision}/link5.stl" imesh="${link5_mesh}" color="panda_gray" />
+  <xacro:panda_link lname="panda_link6" vmesh="${mesh_pkg_visual}/link6.dae"
+    cmesh="${mesh_pkg_collision}/link6.stl" imesh="${link6_mesh}" color="panda_white" />
+  <xacro:panda_link lname="panda_link7" vmesh="${mesh_pkg_visual}/link7.dae"
+    cmesh="${mesh_pkg_collision}/link7.stl" imesh="${link7_mesh}" color="panda_dark" />
+  <xacro:panda_link lname="panda_hand" vmesh="${mesh_pkg_visual}/hand.dae"
+    cmesh="${mesh_pkg_collision}/hand.stl" imesh="${hand_mesh}" color="panda_dark" />
+  <xacro:panda_link lname="panda_leftfinger" vmesh="${mesh_pkg_visual}/finger.dae"
+    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" />
+  <xacro:panda_link lname="panda_rightfinger" vmesh="${mesh_pkg_visual}/finger.dae"
+    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" />
 
-  <joint name="panda_joint8" type="fixed">
-    <parent link="panda_link7"/>
-    <child link="panda_link8"/>
-    <origin xyz="0 0 0.107" rpy="0 0 0"/>
-  </joint>
+  <link name="panda_link8" />
 
-  <joint name="panda_hand_fixed_joint" type="fixed">
-    <parent link="panda_link8"/>
-    <child link="panda_hand"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
+  <xacro:property name="joint1_origin_xyz" value="0 0 0.333" />
+  <xacro:property name="joint1_origin_rpy" value="0 0 0" />
+  <xacro:property name="joint1_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint1_lower_limit" value="${-166*pi/180}" />
+  <xacro:property name="joint1_upper_limit" value="${166*pi/180}" />
+  <xacro:property name="joint1_velocity_limit" value="${150*pi/180}" />
+  <xacro:property name="joint1_torque_limit" value="87" />
+  <xacro:property name="joint1_damping" value="21.75" />
+  <xacro:property name="joint1_friction" value="3.48" />
 
-  <joint name="panda_finger_joint1" type="prismatic">
-    <parent link="panda_hand"/>
-    <child link="panda_leftfinger"/>
-    <origin xyz="0.0 0.02 0.053" rpy="0 0 0"/>
-    <axis xyz="0 -1 0"/>
-    <limit lower="0.0" upper="0.035" effort="20" velocity="0.1"/>
-  </joint>
 
-  <joint name="panda_finger_joint2" type="prismatic">
-    <parent link="panda_hand"/>
-    <child link="panda_rightfinger"/>
-    <origin xyz="0.0 -0.01 0.053" rpy="0 0 3.14159"/>
-    <axis xyz="0 -1 0"/>
-    <limit lower="0.0" upper="0.035" effort="20" velocity="0.1"/>
-  </joint>
+  <xacro:property name="joint2_origin_xyz" value="0 0 0" />
+  <xacro:property name="joint2_origin_rpy" value="${-pi/2} 0 0" />
+  <xacro:property name="joint2_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint2_lower_limit" value="${-101*pi/180}" />
+  <xacro:property name="joint2_upper_limit" value="${101*pi/180}" />
+  <xacro:property name="joint2_velocity_limit" value="${150*pi/180}" />
+  <xacro:property name="joint2_torque_limit" value="87" />
+  <xacro:property name="joint2_damping" value="21.75" />
+  <xacro:property name="joint2_friction" value="3.48" />
+
+
+  <xacro:property name="joint3_origin_xyz" value="0 -0.316 0" />
+  <xacro:property name="joint3_origin_rpy" value="${pi/2} 0 0" />
+  <xacro:property name="joint3_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint3_lower_limit" value="${-166*pi/180}" />
+  <xacro:property name="joint3_upper_limit" value="${166*pi/180}" />
+  <xacro:property name="joint3_velocity_limit" value="${150*pi/180}" />
+  <xacro:property name="joint3_torque_limit" value="87" />
+  <xacro:property name="joint3_damping" value="21.75" />
+  <xacro:property name="joint3_friction" value="3.48" />
+
+  <xacro:property name="joint4_origin_xyz" value="0.0825 0 0" />
+  <xacro:property name="joint4_origin_rpy" value="${pi/2} 0 0" />
+  <xacro:property name="joint4_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint4_lower_limit" value="${-176/180*pi}" />
+  <xacro:property name="joint4_upper_limit" value="${-4/180*pi}" />
+  <xacro:property name="joint4_velocity_limit" value="${150*pi/180}" />
+  <xacro:property name="joint4_torque_limit" value="87" />
+  <xacro:property name="joint4_damping" value="21.75" />
+  <xacro:property name="joint4_friction" value="3.48" />
+
+
+  <xacro:property name="joint5_origin_xyz" value="-0.0825 0.384 0" />
+  <xacro:property name="joint5_origin_rpy" value="${-pi/2} 0 0" />
+  <xacro:property name="joint5_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint5_lower_limit" value="${-166*pi/180}" />
+  <xacro:property name="joint5_upper_limit" value="${166*pi/180}" />
+  <xacro:property name="joint5_velocity_limit" value="${pi}" />
+  <xacro:property name="joint5_torque_limit" value="12" />
+  <xacro:property name="joint5_damping" value="3.0" />
+  <xacro:property name="joint5_friction" value="0.48" />
+
+  <xacro:property name="joint6_origin_xyz" value="0 0 0" />
+  <xacro:property name="joint6_origin_rpy" value="${pi/2} 0 0" />
+  <xacro:property name="joint6_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint6_lower_limit" value="${-1/180*pi}" />
+  <xacro:property name="joint6_upper_limit" value="${215/180*pi}" />
+  <xacro:property name="joint6_velocity_limit" value="${pi}" />
+  <xacro:property name="joint6_torque_limit" value="12" />
+  <xacro:property name="joint6_damping" value="3.0" />
+  <xacro:property name="joint6_friction" value="0.48" />
+
+
+  <xacro:property name="joint7_origin_xyz" value="0.088 0 0" />
+  <xacro:property name="joint7_origin_rpy" value="${pi/2} 0 0" />
+  <xacro:property name="joint7_axis_xyz" value="0 0 1" />
+  <xacro:property name="joint7_lower_limit" value="${-166*pi/180}" />
+  <xacro:property name="joint7_upper_limit" value="${166*pi/180}" />
+  <xacro:property name="joint7_velocity_limit" value="${pi}" />
+  <xacro:property name="joint7_torque_limit" value="12" />
+  <xacro:property name="joint7_damping" value="3.0" />
+  <xacro:property name="joint7_friction" value="0.48" />
+
+  <xacro:panda_joint parent="base_link" child="panda_link0" joint_name="base_to_panda_mount"
+    joint_type="fixed" joint_origin_xyz="0 0 0" joint_origin_rpy="0 0 0" />
+
+  <!-- 1st -->
+  <xacro:panda_joint parent="panda_link0" child="panda_link1" joint_name="panda_joint1"
+    joint_type="revolute" joint_origin_xyz="${joint1_origin_xyz}"
+    joint_origin_rpy="${joint1_origin_rpy}"
+    joint_axis_xyz="${joint1_axis_xyz}"
+    joint_lower_limit="${joint1_lower_limit}" joint_upper_limit="${joint1_upper_limit}"
+    joint_velocity_limit="${joint1_velocity_limit}"
+    joint_torque_limit="${joint1_torque_limit}"
+    joint_damping="${joint1_damping}" joint_friction="${joint1_friction}" />
+
+
+  <!-- 2nd -->
+  <xacro:panda_joint parent="panda_link1" child="panda_link2" joint_name="panda_joint2"
+    joint_type="revolute" joint_origin_xyz="${joint2_origin_xyz}"
+    joint_origin_rpy="${joint2_origin_rpy}"
+    joint_axis_xyz="${joint2_axis_xyz}"
+    joint_lower_limit="${joint2_lower_limit}" joint_upper_limit="${joint2_upper_limit}"
+    joint_velocity_limit="${joint2_velocity_limit}"
+    joint_torque_limit="${joint2_torque_limit}"
+    joint_damping="${joint2_damping}" joint_friction="${joint2_friction}" />
+
+  <!-- 3rd -->
+  <xacro:panda_joint parent="panda_link2" child="panda_link3" joint_name="panda_joint3"
+    joint_type="revolute" joint_origin_xyz="${joint3_origin_xyz}"
+    joint_origin_rpy="${joint3_origin_rpy}"
+    joint_axis_xyz="${joint3_axis_xyz}"
+    joint_lower_limit="${joint3_lower_limit}" joint_upper_limit="${joint3_upper_limit}"
+    joint_velocity_limit="${joint3_velocity_limit}"
+    joint_torque_limit="${joint3_torque_limit}"
+    joint_damping="${joint3_damping}" joint_friction="${joint3_friction}" />
+
+  <!-- 4th -->
+  <xacro:panda_joint parent="panda_link3" child="panda_link4" joint_name="panda_joint4"
+    joint_type="revolute" joint_origin_xyz="${joint4_origin_xyz}"
+    joint_origin_rpy="${joint4_origin_rpy}"
+    joint_axis_xyz="${joint4_axis_xyz}"
+    joint_lower_limit="${joint4_lower_limit}" joint_upper_limit="${joint4_upper_limit}"
+    joint_velocity_limit="${joint4_velocity_limit}"
+    joint_torque_limit="${joint4_torque_limit}"
+    joint_damping="${joint4_damping}" joint_friction="${joint4_friction}" />
+
+  <!-- 5th -->
+  <xacro:panda_joint parent="panda_link4" child="panda_link5" joint_name="panda_joint5"
+    joint_type="revolute" joint_origin_xyz="${joint5_origin_xyz}"
+    joint_origin_rpy="${joint5_origin_rpy}"
+    joint_axis_xyz="${joint5_axis_xyz}"
+    joint_lower_limit="${joint5_lower_limit}" joint_upper_limit="${joint5_upper_limit}"
+    joint_velocity_limit="${joint5_velocity_limit}"
+    joint_torque_limit="${joint5_torque_limit}"
+    joint_damping="${joint5_damping}" joint_friction="${joint5_friction}" />
+  <!-- 6th -->
+  <xacro:panda_joint parent="panda_link5" child="panda_link6" joint_name="panda_joint6"
+    joint_type="revolute" joint_origin_xyz="${joint6_origin_xyz}"
+    joint_origin_rpy="${joint6_origin_rpy}"
+    joint_axis_xyz="${joint6_axis_xyz}"
+    joint_lower_limit="${joint6_lower_limit}" joint_upper_limit="${joint6_upper_limit}"
+    joint_velocity_limit="${joint6_velocity_limit}"
+    joint_torque_limit="${joint6_torque_limit}"
+    joint_damping="${joint6_damping}" joint_friction="${joint6_friction}" />
+
+  <!-- 7th -->
+  <xacro:panda_joint parent="panda_link6" child="panda_link7" joint_name="panda_joint7"
+    joint_type="revolute" joint_origin_xyz="${joint7_origin_xyz}"
+    joint_origin_rpy="${joint7_origin_rpy}"
+    joint_axis_xyz="${joint7_axis_xyz}"
+    joint_lower_limit="${joint7_lower_limit}" joint_upper_limit="${joint7_upper_limit}"
+    joint_velocity_limit="${joint7_velocity_limit}"
+    joint_torque_limit="${joint7_torque_limit}"
+    joint_damping="${joint7_damping}" joint_friction="${joint7_friction}" />
+
+
+  <!-- Base for wrist mounting and its fixed -->
+
+  <xacro:property name="wrist_origin_xyz" value="0 0 0.107" />
+  <xacro:property name="wrist_origin_rpy" value="0 0 ${-pi/4}" />
+
+  <!-- <xacro:panda_virtual_link
+    parent="panda_link7"
+    link_name="panda_link8V"
+    joint_origin_xyz="${wrist_origin_xyz}"
+    joint_origin_rpy="${wrist_origin_rpy}"
+    gazebo_preserve_fixed_joint="true"
+  /> -->
+
+<joint name="panda_link7_to_link8" type="fixed">
+  <parent link="panda_link7" />
+  <child link="panda_link8" />
+  <origin xyz="${wrist_origin_xyz}" rpy="${wrist_origin_rpy}" />
+</joint>
+
+  <!-- **********End of kinamatic chain***** -->
+
+
+  <!--####################################Start
+  of the tool(wrist)############################################################ -->
+
+  <xacro:gripper_attach arm_end_link_name="panda_link8"
+    gripper_hand_link_name="panda_hand"
+    finger_link1_name="panda_leftfinger"
+    finger_link2_name="panda_rightfinger"
+  />
+
 
   <ros2_control name="PandaSystem" type="system">
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
 
-    <joint name="panda_joint1"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint2"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint3"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint4"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint5"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint6"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_joint7"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+    <joint name="panda_joint1">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint2">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint3">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint4">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint5">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint6">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_joint7">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
 
-    <joint name="panda_finger_joint1"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
-    <joint name="panda_finger_joint2"><command_interface name="position"/><command_interface name="velocity"/><state_interface name="position"/><state_interface name="velocity"/></joint>
+    <joint name="panda_finger_joint1">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
+    <joint name="panda_finger_joint2">
+      <command_interface name="position" />
+      <command_interface name="velocity" />
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+    </joint>
   </ros2_control>
 
   <gazebo>
