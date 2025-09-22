@@ -63,7 +63,27 @@ joint_friction:=0.0
 
                 <dynamics damping="${joint_damping}" friction="${joint_friction}" />
             </xacro:unless>
+            <xacro:if value="${joint_name == 'finger_joint1'}">
 
+                <gazebo>
+
+                    <joint name="finger_joint1">
+                        <position>0.01</position>
+                    </joint>
+                </gazebo>
+            </xacro:if>
+
+            <xacro:if value="${joint_name == 'finger_joint2'}">
+                <mimic joint="finger_joint1" multiplier="-1"
+                    offset="0" />
+                <gazebo>
+
+                    <joint name="finger_joint2">
+                        <position>-0.01</position>
+                    </joint>
+                </gazebo>
+
+            </xacro:if>
         </joint>
 
         <xacro:unless value="${joint_type == 'fixed'}">
@@ -82,6 +102,7 @@ joint_friction:=0.0
 
             </transmission>
         </xacro:unless>
+
 
     </xacro:macro>
 
