@@ -11,7 +11,6 @@ def generate_launch_description():
     pkg_name = 'panda_ros_simulation'
     pkg_share = get_package_share_directory(pkg_name)
 
-    # Declare launch arguments
     xacro_file = LaunchConfiguration('xacro_file')
     world_file = LaunchConfiguration('world_file')
 
@@ -28,7 +27,7 @@ def generate_launch_description():
         description='Absolute path to Gazebo world file'
     )
 
-    # Process xacro safely
+    
     xacro_path = os.path.join(pkg_share, 'urdf', 'panda.urdf.xacro')
     if not os.path.exists(xacro_path):
         raise FileNotFoundError(f"Xacro file not found: {xacro_path}")
@@ -40,7 +39,7 @@ def generate_launch_description():
 
     robot_description = {'robot_description': doc.toxml()}
 
-    # Launch Gazebo server and client
+    
     gzserver = ExecuteProcess(
         cmd=['gzserver', LaunchConfiguration('world_file'), '--verbose', '-s', 'libgazebo_ros_factory.so'],
         output='screen'
@@ -51,7 +50,7 @@ def generate_launch_description():
         output='screen'
     )
 
-    # Robot State Publisher
+    
     robot_state_pub = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
@@ -59,7 +58,7 @@ def generate_launch_description():
         parameters=[robot_description]
     )
 
-    # Spawn robot in Gazebo
+    
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
