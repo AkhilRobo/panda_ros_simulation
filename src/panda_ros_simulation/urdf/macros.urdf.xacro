@@ -19,6 +19,10 @@
             </collision>
             <xacro:panda_inertial mesh="${imesh}" mesh_offset_rpy="0 0 0" />
         </link>
+        <gazebo reference="${lname}">
+        <material>Gazebo/Grey</material>
+    </gazebo>
+
     </xacro:macro>
 
     <!-- Macro for joining the links -->
