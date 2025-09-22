@@ -1,0 +1,82 @@
+```mermaid
+graph LR
+    %% --- Layout: Left to Right ---
+
+    %% --- Launch File Section ---
+    subgraph Launch_File["🚀 Launch File"]
+        A[xacro panda.urdf.xacro] --> B[robot_description parameter]
+        B --> C[robot_state_publisher]
+        B --> D[spawn_entity.py]
+    end
+
+    %% --- Gazebo World ---
+    subgraph Gazebo_World["🌍 Gazebo World"]
+        D --> E[Gazebo Server]
+        E --> F[gazebo_ros2_control plugin]
+    end
+
+    %% --- Controller Manager ---
+    subgraph Controller_Manager["🛠️ Controller Manager"]
+        F --> G[Controller Manager Node]
+        G --> H1[joint_state_broadcaster]
+        G --> H2[arm_controller]
+        G --> H3[eef_controller]
+    end
+
+    %% --- ROS2 Topics ---
+    subgraph ROS2_Topics["🛰️ ROS 2 Topics"]
+        I1["📦 robot_description"]
+        I2["📊 joint_states"]
+        I3["📡 tf & tf_static"]
+        I4["🎯 arm_controller/joint_trajectory"]
+        I5["🎯 eef_controller/joint_trajectory"]
+    end
+
+    %% --- Visualization & Control ---
+    subgraph Visualization["👀 Visualization & Control"]
+        J[RViz]
+        K[MoveIt2 / User Node]
+    end
+
+    %% --- Connections ---
+    C --> I3
+    C --> I1
+    E -->|Joint States| F
+    F -->|/joint_states| I2
+    H1 -->|/joint_states| I2
+    I2 --> C
+    I2 --> J
+    I3 --> J
+    I1 --> J
+    I4 --> H2
+    I5 --> H3
+    K -->|Send Command| I4
+    K -->|Send Command| I5
+
+    %% --- DARK THEME STYLING ---
+    %% Background groups use darker but contrasting colors
+    style Launch_File fill:#2d1f3d,stroke:#ffffff,stroke-width:1px,stroke-dasharray: 3 3,color:#ffffff
+    style Gazebo_World fill:#1f2d3d,stroke:#ffffff,stroke-width:1px,stroke-dasharray: 3 3,color:#ffffff
+    style Controller_Manager fill:#3d2d1f,stroke:#ffffff,stroke-width:1px,stroke-dasharray: 3 3,color:#ffffff
+    style ROS2_Topics fill:#1f3d2d,stroke:#ffffff,stroke-width:1px,stroke-dasharray: 3 3,color:#ffffff
+    style Visualization fill:#3d1f1f,stroke:#ffffff,stroke-width:1px,stroke-dasharray: 3 3,color:#ffffff
+
+    %% Node colors: high contrast for readability
+    style A fill:#ff00ff,stroke:#fff,stroke-width:1px,color:#fff
+    style B fill:#3388ff,stroke:#fff,stroke-width:1px,color:#fff
+    style C fill:#33ff77,stroke:#fff,stroke-width:1px,color:#000
+    style D fill:#33ff77,stroke:#fff,stroke-width:1px,color:#000
+    style E fill:#ff66ff,stroke:#fff,stroke-width:1px,color:#000
+    style F fill:#33ccff,stroke:#fff,stroke-width:1px,color:#000
+    style G fill:#ff00ff,stroke:#fff,stroke-width:1px,color:#fff
+    style H1 fill:#33ff77,stroke:#fff,stroke-width:1px,color:#000
+    style H2 fill:#33ff77,stroke:#fff,stroke-width:1px,color:#000
+    style H3 fill:#33ff77,stroke:#fff,stroke-width:1px,color:#000
+    style I1 fill:#0099cc,stroke:#fff,stroke-width:1px,color:#fff
+    style I2 fill:#0099cc,stroke:#fff,stroke-width:1px,color:#fff
+    style I3 fill:#0099cc,stroke:#fff,stroke-width:1px,color:#fff
+    style I4 fill:#0099cc,stroke:#fff,stroke-width:1px,color:#fff
+    style I5 fill:#0099cc,stroke:#fff,stroke-width:1px,color:#fff
+    style J fill:#ff4444,stroke:#fff,stroke-width:1px,color:#fff
+    style K fill:#ffaa00,stroke:#fff,stroke-width:1px,color:#000
+```
