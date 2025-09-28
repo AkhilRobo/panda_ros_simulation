@@ -1,3 +1,4 @@
+```mermaid
 graph LR
 subgraph Launch_File
 A[xacro panda.urdf.xacro] --> B[robot_description parameter]
@@ -67,3 +68,4 @@ style I4 fill:#0099cc,color:#ffffff
 style I5 fill:#0099cc,color:#ffffff
 style J fill:#ff4444,color:#ffffff
 style K fill:#ffaa00,color:#000000
+'''
