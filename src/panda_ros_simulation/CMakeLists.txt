@@ -11,7 +11,7 @@ find_package(ament_cmake REQUIRED)
 # This section is crucial. It tells colcon to install your resource directories
 # into the 'share' folder where ROS and Gazebo can find them.
 install(
-  DIRECTORY launch
+  DIRECTORY launch 
   DESTINATION share/${PROJECT_NAME}
 )
 
@@ -19,6 +19,7 @@ install(
   DIRECTORY urdf
   DESTINATION share/${PROJECT_NAME}
 )
+
 
 install(
   DIRECTORY meshes
