@@ -30,13 +30,6 @@
 
   <link name="world" />
 
-  <link name="base_link" />
-
-  <joint name="world_to_base" type="fixed">
-    <parent link="world" />
-    <child link="base_link" />
-    <origin xyz="0 0 0" rpy="0 0 0" />
-  </joint>
 
   <xacro:panda_link lname="panda_link0" vmesh="${mesh_pkg_visual}/link0.dae"
     cmesh="${mesh_pkg_collision}/link0.stl" imesh="${link0_mesh}" color="panda_dark" rgba_val="${panda_dark}"/>
@@ -137,7 +130,7 @@
   <xacro:property name="joint7_damping" value="3.0" />
   <xacro:property name="joint7_friction" value="0.48" />
 
-  <xacro:panda_joint parent="base_link" child="panda_link0" joint_name="base_to_panda_mount"
+  <xacro:panda_joint parent="world" child="panda_link0" joint_name="base_to_panda_mount"
     joint_type="fixed" joint_origin_xyz="0 0 0" joint_origin_rpy="0 0 0" />
 
   <!-- 1st -->
