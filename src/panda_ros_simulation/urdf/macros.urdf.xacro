@@ -4,7 +4,7 @@
 
 
     <!-- Macro for creating links -->
-    <xacro:macro name="panda_link" params="lname vmesh cmesh imesh color">
+    <xacro:macro name="panda_link" params="lname vmesh cmesh imesh color rgba_val">
         <link name="${lname}">
             <visual>
                 <geometry>
@@ -20,8 +20,13 @@
             <xacro:panda_inertial mesh="${imesh}" mesh_offset_rpy="0 0 0" />
         </link>
         <gazebo reference="${lname}">
-        <material>Gazebo/Grey</material>
-    </gazebo>
+            <material>
+               ${rgba_val}
+            </material>
+        </gazebo>
+       <!-- <gazebo reference="${lname}">
+        <material>Gazebo/White</material>
+    </gazebo> -->
 
     </xacro:macro>
 

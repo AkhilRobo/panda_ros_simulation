@@ -21,6 +21,13 @@
     <color rgba="0.95 0.95 0.95 1" />
   </material>
 
+  <xacro:property name="panda_gray" value="Gazebo/Grey" />
+  <xacro:property name="panda_dark" value="Gazebo/Red" />
+  <xacro:property name="panda_white" value="Gazebo/White" />
+  <xacro:property name="panda_green" value="Gazebo/Green" />
+
+
+
   <link name="world" />
 
   <link name="base_link" />
@@ -32,27 +39,27 @@
   </joint>
 
   <xacro:panda_link lname="panda_link0" vmesh="${mesh_pkg_visual}/link0.dae"
-    cmesh="${mesh_pkg_collision}/link0.stl" imesh="${link0_mesh}" color="panda_dark" />
+    cmesh="${mesh_pkg_collision}/link0.stl" imesh="${link0_mesh}" color="panda_dark" rgba_val="${panda_dark}"/>
   <xacro:panda_link lname="panda_link1" vmesh="${mesh_pkg_visual}/link1.dae"
-    cmesh="${mesh_pkg_collision}/link1.stl" imesh="${link1_mesh}" color="panda_gray" />
+    cmesh="${mesh_pkg_collision}/link1.stl" imesh="${link1_mesh}" color="panda_gray" rgba_val= "${panda_gray}"/>
   <xacro:panda_link lname="panda_link2" vmesh="${mesh_pkg_visual}/link2.dae"
-    cmesh="${mesh_pkg_collision}/link2.stl" imesh="${link2_mesh}" color="panda_white" />
+    cmesh="${mesh_pkg_collision}/link2.stl" imesh="${link2_mesh}" color="panda_white" rgba_val="${panda_white}"/>
   <xacro:panda_link lname="panda_link3" vmesh="${mesh_pkg_visual}/link3.dae"
-    cmesh="${mesh_pkg_collision}/link3.stl" imesh="${link3_mesh}" color="panda_gray" />
+    cmesh="${mesh_pkg_collision}/link3.stl" imesh="${link3_mesh}" color="panda_gray" rgba_val="${panda_gray}"/>
   <xacro:panda_link lname="panda_link4" vmesh="${mesh_pkg_visual}/link4.dae"
-    cmesh="${mesh_pkg_collision}/link4.stl" imesh="${link4_mesh}" color="panda_white" />
+    cmesh="${mesh_pkg_collision}/link4.stl" imesh="${link4_mesh}" color="panda_white" rgba_val="${panda_white}"/>
   <xacro:panda_link lname="panda_link5" vmesh="${mesh_pkg_visual}/link5.dae"
-    cmesh="${mesh_pkg_collision}/link5.stl" imesh="${link5_mesh}" color="panda_gray" />
+    cmesh="${mesh_pkg_collision}/link5.stl" imesh="${link5_mesh}" color="panda_gray" rgba_val= "${panda_gray}"/>
   <xacro:panda_link lname="panda_link6" vmesh="${mesh_pkg_visual}/link6.dae"
-    cmesh="${mesh_pkg_collision}/link6.stl" imesh="${link6_mesh}" color="panda_white" />
+    cmesh="${mesh_pkg_collision}/link6.stl" imesh="${link6_mesh}" color="panda_white" rgba_val="${panda_white}" />
   <xacro:panda_link lname="panda_link7" vmesh="${mesh_pkg_visual}/link7.dae"
-    cmesh="${mesh_pkg_collision}/link7.stl" imesh="${link7_mesh}" color="panda_dark" />
+    cmesh="${mesh_pkg_collision}/link7.stl" imesh="${link7_mesh}" color="panda_dark" rgba_val="${panda_dark}"/>
   <xacro:panda_link lname="panda_hand" vmesh="${mesh_pkg_visual}/hand.dae"
-    cmesh="${mesh_pkg_collision}/hand.stl" imesh="${hand_mesh}" color="panda_dark" />
+    cmesh="${mesh_pkg_collision}/hand.stl" imesh="${hand_mesh}" color="panda_dark" rgba_val="${panda_dark}" />
   <xacro:panda_link lname="panda_leftfinger" vmesh="${mesh_pkg_visual}/finger.dae"
-    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" />
+    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" rgba_val="${panda_green}"/>
   <xacro:panda_link lname="panda_rightfinger" vmesh="${mesh_pkg_visual}/finger.dae"
-    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" />
+    cmesh="${mesh_pkg_collision}/finger.stl" imesh="${finger_mesh}" color="panda_gray" rgba_val="${panda_green}"/>
 
   <link name="panda_link8" />
 
@@ -262,7 +269,7 @@
       <command_interface name="position" />
       <command_interface name="velocity" />
       <state_interface name="position">
-        <param name="initial_value">0.0</param>
+        <param name="initial_value">-1.7</param>
       </state_interface>
       <state_interface name="velocity" />
     </joint>
@@ -270,7 +277,7 @@
       <command_interface name="position" />
       <command_interface name="velocity" />
       <state_interface name="position">
-        <param name="initial_value">0.0</param>
+        <param name="initial_value">-0.7</param>
       </state_interface>
       <state_interface name="velocity" />
     </joint>
