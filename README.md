@@ -1,84 +1,102 @@
-# Franka Panda ROS 2 Simulation & Debugging Journey
+# Autonomous Robotic Arm: Pick, Place, and Maze Navigation
 
-![ROS 2 Humble](https://img.shields.io/badge/ROS%202-Humble-blue)
+This project demonstrates the integration of perception, motion planning, and autonomous navigation using a simulated robotic arm in ROS 2 and Gazebo. The project is divided into two main phases:
+1.  **Phase 1:** Autonomously detect a ball, plan a path to it, and pick it up.
+2.  **Phase 2:** After picking up the ball, navigate through a maze to a goal location without collisions.
 
-This repository contains a complete ROS 2 simulation package for the Franka Emika Panda collaborative robot arm. It serves as a launchpad for advanced robotics projects, providing a detailed and functional robot model in a Gazebo simulation environment.
+---
 
-More than just a simulation, this repository documents a real-world, late-night debugging session that navigated and solved a series of cascading errors. It stands as a practical guide to the common pitfalls and solutions encountered when building a robot description from scratch in ROS 2.
+### Project Showcase
 
-## Demo
+*(Once you have results, you can record short GIFs of your simulation and place them here.)*
 
-Here is the final, working robot model being controlled in RViz.
+| Phase 1: Pick and Place                                     | Phase 2: Maze Navigation                                        |
+| ----------------------------------------------------------- | --------------------------------------------------------------- |
+|  |
 
-![Panda Arm RViz Demo](media/panda_simulation.gif)
+---
 
-## Key Concepts Covered
+## 🎯 Project Goals
 
-This project is a practical application of several core ROS and robotics concepts:
+- **Phase 1: Autonomous Pick and Place**
+  - **Perception:** Use a simulated sensor (or a Gazebo state publisher) to detect and locate a target object (a ball) in 3D space.
+  - **Motion Planning:** Utilize MoveIt to plan a collision-free trajectory from the arm's home position to the target object.
+  - **Grasping:** Simulate the picking action by attaching the ball to the end-effector using a Gazebo plugin.
 
--   **XACRO (XML Macros):** Used extensively to create a modular, reusable, and easy-to-read robot description (URDF).
--   **URDF (Unified Robot Description Format):** The final XML format that describes the robot's physical properties (links, joints, visuals, collisions).
--   **Transmissions:** The crucial `<transmission>` tags that link the abstract kinematic joints to physical actuators, enabling simulation with `ros2_control`.
--   **Virtual Links:** The use of non-physical links to create stable, standardized coordinate frames, such as a tool flange (`TCP0`), for clean attachment of end-effectors.
--   **`ros2_control`:** The modern ROS 2 framework for controller management, integrated here with Gazebo via `gazebo_ros2_control` for physics-based simulation.
+- **Phase 2: Maze Navigation**
+  - **Environment Mapping:** Use a simulated camera on the arm to perceive the maze structure.
+  - **Pathfinding:** Implement a pathfinding algorithm (e.g., A*) to determine the shortest sequence of waypoints for the end-effector to navigate from the start to the end of the maze.
+  - **Constrained Motion Planning:** Use MoveIt to generate complex, full-arm trajectories that follow the waypoints while avoiding collisions with the maze walls, which are added to the MoveIt Planning Scene.
 
-## Installation & Usage
+---
 
-Follow these steps to build and run the simulation.
+## 🛠️ Technology Stack
 
-### Prerequisites
+| Component            | Technology/Library                                   |
+| -------------------- | ---------------------------------------------------- |
+| **Framework** | ROS 2 (Humble)                                       |
+| **Motion Planning** | MoveIt 2                                             |
+| **Simulation** | Gazebo (Fortress)                                    |
+| **Perception** | OpenCV, Gazebo Sensors (Camera)                      |
+| **Core Language** | C++ (`rclcpp`)                                       |
+| **Build System** | `colcon`                                             |
 
--   Ubuntu 22.04 LTS
--   ROS 2 Humble Hawksbill
--   Gazebo Simulator
--   ROS 2 Build and Control Tools:
+---
+
+## 📈 Project Status
+
+- **Phase 1: Pick and Place** - 🚧 In Progress
+- **Phase 2: Maze Navigation** - 📅 Planned
+
+---
+
+## 🔧 Setup and Installation
+
+1.  **Clone the Repository**
     ```bash
-    sudo apt update
-    sudo apt install ros-dev-tools ros-humble-xacro ros-humble-ros2-control ros-humble-gazebo-ros2-control
+    git clone https://github.com/AkhilRobo/panda_ros_simulation.git
+    
+    cd panda_ros_simulation
     ```
 
-### Build & Run Instructions
+2.  **Install Dependencies**
+    Ensure you have a working installation of ROS 2, MoveIt 2, and Gazebo.
+    *(You can add specific dependency installation commands here later, e.g., `sudo apt install ros-humble-opencv-dev`)*
 
-1.  **Create and navigate to your ROS 2 workspace:**
+3.  **Build the Workspace**
     ```bash
-    mkdir -p ~/panda_ws/src
-    cd ~/panda_ws/src
-    ```
-
-2.  **Clone this repository:**
-    ```bash
-    # Replace with your actual repository URL
-    git clone [https://github.com/AkhilRobo/panda_ros_simulation.git](https://github.com/AkhilRobo/panda_ros_simulation.git)
-    ```
-
-3.  **Install dependencies:**
-    Navigate to your workspace root, and let `rosdep` install any missing dependencies.
-    ```bash
-    cd ~/panda_ws
-    rosdep install --from-paths src -y --ignore-src
-    ```
-
-4.  **Build the workspace:**
-    ```bash
+    # From the root of your workspace
     colcon build --symlink-install
     ```
 
-5.  **Source the workspace:**
-    Remember to source the workspace in every new terminal you open.
+4.  **Source the Workspace**
     ```bash
     source install/setup.bash
     ```
 
-6.  **Launch the Visualization:**
-    This command starts RViz and the `joint_state_publisher` GUI.
+---
+
+## ▶️ How to Run
+
+1.  **Launch the Phase 1 Demo (Pick and Place)**
     ```bash
-    ros2 launch panda_ros_simulation display.launch.py
+    # This will launch Gazebo, RViz, MoveIt, and the application node
+    ros2 launch your_package_name phase_one_demo.launch.py
     ```
-    -   In RViz, set the **Fixed Frame** to `base_link` or `panda_link0` to see the robot.
 
-## Future Work / Roadmap
+2.  **Launch the Phase 2 Demo (Maze Navigation)**
+    ```bash
+    # This will launch the maze world and the maze navigation logic
+    ros2 launch your_package_name phase_two_demo.launch.py
+    ```
 
--   [ ] **MoveIt 2 Integration:** Add a complete MoveIt configuration for the Panda arm to enable advanced motion planning, collision checking, and inverse kinematics.
--   [ ] **Path Planning:** Implement and test various path planning algorithms available in MoveIt and OMPL.
--   [ ] **Perception:** Integrate a simulated depth camera (such as the Intel RealSense) into the Gazebo environment.
--   [ ] **Object Detection:** Develop a ROS 2 node for detecting, localizing, and publishing the poses of objects in the camera's field of view.
+---
+
+## 🗺️ Roadmap and Future Work
+
+- [ ] Complete perception node for ball detection.
+- [ ] Implement Gazebo plugin for grasping.
+- [ ] Design and build the 3D maze model.
+- [ ] Develop the maze-mapping and A* pathfinding node.
+- [ ] Integrate pathfinding waypoints with MoveIt's motion planning.
+- [ ] **(Stretch Goal)** Transition the project to physical hardware.
