@@ -3,12 +3,12 @@
     <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
 
     <!-- Import franka_panda urdf file -->
-    <xacro:include filename="$(find panda_ros_simulation)/urdf/FinalPanda.urdf" />
+    <xacro:include filename="$(find panda_ros_simulation)/urdf/panda.urdf.xacro" />
 
     <!-- Import control_xacro -->
     <xacro:include filename="franka_panda.ros2_control.xacro" />
 
 
-    <xacro:franka_panda_ros2_control name="FakeSystem" initial_positions_file="$(arg initial_positions_file)"/>
+    <xacro:franka_panda_ros2_control name="GazeboSystem" initial_positions_file="$(arg initial_positions_file)"/>
 
 </robot>
