@@ -12,7 +12,7 @@ This project demonstrates the integration of perception, motion planning, and au
 
 | Phase 1: Pick and Place                                     | Phase 2: Maze Navigation                                        |
 | ----------------------------------------------------------- | --------------------------------------------------------------- |
-|  |
+|![Panda Arm RViz Demo](media/Main.gif)|
 
 ---
 
