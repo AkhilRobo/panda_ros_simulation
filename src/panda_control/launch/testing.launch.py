@@ -30,6 +30,7 @@ def generate_launch_description():
     # 2. Spawn the controllers that MoveIt will use
     controller_spawners = [
         "arm_controller",
+        "eef_controller"
     ]
     spawner_nodes = [
         Node(
