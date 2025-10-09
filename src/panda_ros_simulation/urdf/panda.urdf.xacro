@@ -11,6 +11,8 @@
   <xacro:include filename="$(find panda_ros_simulation)/urdf/macros.urdf.xacro" />
   <xacro:include filename="$(find panda_ros_simulation)/urdf/props.urdf.xacro" />
   <xacro:include filename="$(find panda_ros_simulation)/urdf/gripper.urdf.xacro" />
+  <xacro:include filename="$(find panda_ros_simulation)/urdf/RGBDCam.urdf.xacro" />
+  
   <material name="panda_gray">
     <color rgba="0.7 0.7 0.7 1" />
   </material>
@@ -239,6 +241,7 @@
   />
 
 
+
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
@@ -356,5 +359,6 @@
 
 
   </gazebo> -->
+  <xacro:cam_attach cam_parent="panda_hand"/>
 
 </robot>
