@@ -180,75 +180,85 @@
       <pose>0.284067 3.59553 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>1274 807000000</sim_time>
-      <real_time>2360 322124393</real_time>
-      <wall_time>1760177725 380219083</wall_time>
-      <iterations>1274807</iterations>
-      <model name='Desk'>
-        <pose>1.7646 -1.01613 0 0 0 -0.791779</pose>
+      <sim_time>724 433000000</sim_time>
+      <real_time>283 874675050</real_time>
+      <wall_time>1760189620 83422563</wall_time>
+      <iterations>281392</iterations>
+      <model name='Kingston_DT4000MR_G2_Management_Ready_USB_64GB'>
+        <pose>0.822319 -0.989606 0.85506 -0.013669 0.00655 -0.695573</pose>
         <scale>1 1 1</scale>
-        <link name='base_link'>
-          <pose>1.7646 -1.01613 0 0 0 -0.791779</pose>
+        <link name='link_0'>
+          <pose>0.822319 -0.989606 0.85506 -0.013669 0.00655 -0.695573</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>-1.6e-05 1.1e-05 -0.100003 0.087034 0.131024 -0</acceleration>
+          <wrench>-1.6e-05 1.1e-05 -0.100003 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='Kingston_DT4000MR_G2_Management_Ready_USB_64GB_0'>
+        <pose>0.904672 -0.959443 0.855058 -0.013713 0.006548 -0.000302</pose>
+        <scale>1 1 1</scale>
+        <link name='link_0'>
+          <pose>0.904672 -0.959443 0.855058 -0.013713 0.006548 -0.000302</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -9.8 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='LampAndStand'>
+        <pose>-2.88592 -1.28176 0.093779 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='body'>
+          <pose>-2.88592 -1.28176 0.093779 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='Kingston_DT4000MR_G2_Management_Ready_USB_64GB'>
-        <pose>1.887 -1.26796 0.76691 -0.013032 0.006365 -0.772417</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>1.887 -1.26796 0.76691 -0.013032 0.006365 -0.772417</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-4.5e-05 3.5e-05 19.5921 0.293425 0.375602 -0</acceleration>
-          <wrench>-4.5e-05 3.5e-05 19.5921 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='Kingston_DT4000MR_G2_Management_Ready_USB_64GB_0'>
-        <pose>1.95587 -1.24247 0.766943 -0.011894 0.004443 -1.13677</pose>
-        <scale>1 1 1</scale>
-        <link name='link_0'>
-          <pose>1.95587 -1.24247 0.766943 -0.011894 0.004443 -1.13677</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-7e-06 1.2e-05 -0.002655 0.136004 0.082129 0</acceleration>
-          <wrench>-7e-06 1.2e-05 -0.002655 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='LampAndStand'>
-        <pose>-2.47503 -1.28176 0.093779 0 -0 0</pose>
+      <model name='NurseTable'>
+        <pose>1.31634 -0.575549 -0.007718 0 -0 0.706904</pose>
         <scale>1 1 1</scale>
         <link name='body'>
-          <pose>-2.47503 -1.28176 0.093779 0 -0 0</pose>
+          <pose>1.31634 -0.575549 -0.007718 0 -0 0.706904</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='TrashBin'>
-        <pose>0.501658 -1.94677 0 0 -0 0.730268</pose>
+        <pose>-0.007719 -1.49777 0 0 -0 0.730268</pose>
         <scale>1 1 1</scale>
         <link name='body'>
-          <pose>0.501658 -1.94677 0 0 -0 0.730268</pose>
+          <pose>-0.007719 -1.49777 0 0 -0 0.730268</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='bookshelf'>
-        <pose>-2.28207 2.66136 0 0 -0 0</pose>
+      <model name='beer'>
+        <pose>1.08933 -0.823058 0.855176 -2e-05 4e-06 0.739834</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>-2.28207 2.66136 0 0 -0 0</pose>
+          <pose>1.08933 -0.823056 0.970176 -2e-05 4e-06 0.739834</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 -9.8 0 -0 0</acceleration>
+          <wrench>0 0 -3.822 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='bookshelf'>
+        <pose>-2.28207 3.52865 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>-2.28207 3.52865 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='cabinet'>
-        <pose>-3.55794 -2.878 0 0 -0 0</pose>
+        <pose>-0.222741 3.26923 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='cabinet_bottom_plate'>
-          <pose>-3.55794 -2.878 0 0 -0 0</pose>
+          <pose>-0.222741 3.26923 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -265,7 +275,7 @@
         </link>
       </model>
       <model name='grey_wall_0'>
-        <pose>-3.93959 0.106853 0.005715 0 -0 1.56154</pose>
+        <pose>-3.93959 0.106853 0.00572 0 -0 1.56154</pose>
         <scale>1 1 1</scale>
         <link name='link'>
           <pose>-3.93959 0.106853 1.40572 0 -0 1.56154</pose>
@@ -288,305 +298,9 @@
         <pose>0 0 10 0 -0 0</pose>
       </light>
       <light name='user_point_light_0'>
-        <pose>-3.01907 -1.01289 1.11148 -3.14159 1.53725 -2.19639</pose>
+        <pose>-2.81401 -1.35753 1 0 -0 0</pose>
       </light>
     </state>
-    <model name='Desk'>
-      <static>1</static>
-      <link name='base_link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>/usr/share/gazebo-11/models/Office_Desk/meshes/desk.dae</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://Office_Desk/materials/scripts</uri>
-              <uri>model://Office_Desk/materials/textures</uri>
-              <name>OfficeDesk/Diffuse</name>
-            </script>
-          </material>
-        </visual>
-        <collision name='Box001'>
-          <pose>0 0 0.750208 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.8325 2.24977 0.033646</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box002'>
-          <pose>0.331174 -1.05803 0.372493 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.744987</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box003'>
-          <pose>0.331174 1.05803 0.372493 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.744987</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box004'>
-          <pose>-0.331174 1.05803 0.372493 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.744987</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box005'>
-          <pose>-0.331174 -1.05803 0.372493 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.744987</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box006'>
-          <pose>0.000345 -1.05803 0.485212 3.14159 1.57079 3.14159</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.663038</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box007'>
-          <pose>0.000345 1.05803 0.485212 3.14159 1.57079 3.14159</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 0.663038</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box008'>
-          <pose>0 -0.000487 0.485212 1.57079 1.57079 3.14159</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 2.11509</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box009'>
-          <pose>0.331174 -0.000626 0.715061 -1.5708 0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 2.11481</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box010'>
-          <pose>-0.331174 -0.000626 0.715061 -1.5708 0 0</pose>
-          <geometry>
-            <box>
-              <size>0.035625 0.035625 2.11481</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box011'>
-          <pose>0.072698 -0.102337 0.768498 0 0.087267 0</pose>
-          <geometry>
-            <box>
-              <size>0.129877 0.447191 0.05018</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box012'>
-          <pose>-0.222452 -0.060559 0.979005 0 -0 0</pose>
-          <geometry>
-            <box>
-              <size>0.029518 0.63758 0.470188</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <collision name='Box013'>
-          <pose>0.098995 0.276996 0.782739 0 0 -0.174533</pose>
-          <geometry>
-            <box>
-              <size>0.116594 0.05708 0.036897</size>
-            </box>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-      <pose>-2 1 0 0 -0 0</pose>
-    </model>
     <model name='bookshelf'>
       <static>1</static>
       <link name='link'>
@@ -1112,19 +826,6 @@
       </link>
       <pose>-2.53889 0.238546 0 0 -0 0</pose>
     </model>
-    <light name='user_point_light_0' type='point'>
-      <pose>-2.24459 0.037891 1 0 -0 0</pose>
-      <diffuse>0.5 0.5 0.5 1</diffuse>
-      <specular>0.1 0.1 0.1 1</specular>
-      <attenuation>
-        <range>20</range>
-        <constant>0.5</constant>
-        <linear>0.01</linear>
-        <quadratic>0.001</quadratic>
-      </attenuation>
-      <cast_shadows>0</cast_shadows>
-      <direction>0 0 -1</direction>
-    </light>
     <model name='TrashBin'>
       <static>1</static>
       <link name='body'>
@@ -1258,10 +959,118 @@
     </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>5 -5 2 0 0.275643 2.3562</pose>
+        <pose>5.0486 -2.35806 2.41343 0 0.435643 2.6602</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
+    <model name='beer'>
+      <link name='link'>
+        <pose>0 0 0.115 0 -0 0</pose>
+        <inertial>
+          <mass>0.39</mass>
+          <inertia>
+            <ixx>0.00058</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.00058</iyy>
+            <iyz>0</iyz>
+            <izz>0.00019</izz>
+          </inertia>
+          <pose>0 0 0 0 -0 0</pose>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.23</length>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <cylinder>
+              <radius>0.055</radius>
+              <length>0.23</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://beer/materials/scripts</uri>
+              <uri>model://beer/materials/textures</uri>
+              <name>Beer/Diffuse</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>1.35651 -1.52389 0 0 -0 0</pose>
+      <enable_wind>0</enable_wind>
+    </model>
+    <model name='NurseTable'>
+      <static>1</static>
+      <link name='body'>
+        <pose>0 0 0 0 -0 0</pose>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://NurseTable/meshes/NurseTable.obj</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name='collision'>
+          <geometry>
+            <mesh>
+              <uri>model://NurseTable/meshes/NurseTable_Col.obj</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>2.31489 -0.897646 0 0 -0 0</pose>
+    </model>
+    <light name='user_point_light_0' type='point'>
+      <pose>-2.81401 -1.35753 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
   </world>
 </sdf>

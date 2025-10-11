@@ -22,8 +22,8 @@ def generate_launch_description():
     my_robot_pkg = get_package_share_directory(pkg_name)
     urdf_file = os.path.join(my_robot_pkg, 'urdf', 'panda.urdf.xacro')
     controller_file = os.path.join(my_robot_pkg, 'config', 'controller.yaml')
-    # world_file = os.path.join(my_robot_pkg, 'world', 'Main.world')
-    world_file = os.path.abspath(os.path.join(os.path.expanduser('~/panda_ros_simulation/src/panda_ros_simulation/world'), 'Main.world'))
+    world_file = os.path.join(my_robot_pkg, 'world', 'Main.world')
+    # world_file = os.path.abspath(os.path.join(os.path.expanduser('~/panda_ros_simulation/src/panda_ros_simulation/world'), 'Main.world'))
     print("World file used:", world_file)
 
 
@@ -32,10 +32,15 @@ def generate_launch_description():
     robot_description = Command(['xacro ', urdf_file])
     robot_description_param = {'robot_description': robot_description}
 
-    set_software_rendering = SetEnvironmentVariable(
-    name='LIBGL_ALWAYS_SOFTWARE',
+    set_prime_offload = SetEnvironmentVariable(
+    name='__NV_PRIME_RENDER_OFFLOAD',
     value='1'
-    )
+)
+
+    set_glx_vendor = SetEnvironmentVariable(
+    name='__GLX_VENDOR_LIBRARY_NAME',
+    value='nvidia'
+)
 
     # --- Gazebo ---
     gazebo = IncludeLaunchDescription(
@@ -58,7 +63,11 @@ def generate_launch_description():
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-entity', 'franka_panda', '-topic', 'robot_description'],
+        arguments=['-entity', 'franka_panda',
+                    '-topic', 'robot_description',
+                     '-x', '0.638782',
+                   '-y', '-1.234319',
+                   '-z', '0.855177'],
         output='screen'
     )
 
@@ -89,7 +98,8 @@ def generate_launch_description():
 
     return LaunchDescription([
         declare_use_sim_time_cmd,
-        set_software_rendering,
+        set_prime_offload,
+        set_glx_vendor,
         gazebo,
         robot_state_publisher,
         spawn_entity,
