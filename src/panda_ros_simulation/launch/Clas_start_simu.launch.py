@@ -5,6 +5,7 @@ from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument, Regi
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
+from launch.actions import SetEnvironmentVariable
 from launch_ros.actions import Node
 
 def generate_launch_description():
@@ -21,16 +22,28 @@ def generate_launch_description():
     my_robot_pkg = get_package_share_directory(pkg_name)
     urdf_file = os.path.join(my_robot_pkg, 'urdf', 'panda.urdf.xacro')
     controller_file = os.path.join(my_robot_pkg, 'config', 'controller.yaml')
+    # world_file = os.path.join(my_robot_pkg, 'world', 'Main.world')
+    world_file = os.path.abspath(os.path.join(os.path.expanduser('~/panda_ros_simulation/src/panda_ros_simulation/world'), 'Main.world'))
+    print("World file used:", world_file)
+
+
 
     # --- Robot Description ---
     robot_description = Command(['xacro ', urdf_file])
     robot_description_param = {'robot_description': robot_description}
+
+    set_software_rendering = SetEnvironmentVariable(
+    name='LIBGL_ALWAYS_SOFTWARE',
+    value='1'
+    )
 
     # --- Gazebo ---
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('gazebo_ros'), 'launch', 'gazebo.launch.py')
         )
+        ,launch_arguments={'world': world_file}.items()
+
     )
 
     # --- Robot State Publisher ---
@@ -76,6 +89,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         declare_use_sim_time_cmd,
+        set_software_rendering,
         gazebo,
         robot_state_publisher,
         spawn_entity,
