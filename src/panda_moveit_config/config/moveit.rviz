@@ -4,11 +4,10 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
-        - /MotionPlanning1
-        - /PointCloud21
-        - /Camera1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
-    Tree Height: 255
+    Tree Height: 279
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -316,8 +315,70 @@ Visualization Manager:
         Grid: true
         MotionPlanning: true
         PointCloud2: true
+        TF: true
         Value: true
       Zoom Factor: 1
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        camera_link:
+          Value: true
+        camera_link_optical:
+          Value: false
+        panda_hand:
+          Value: false
+        panda_leftfinger:
+          Value: false
+        panda_link0:
+          Value: false
+        panda_link1:
+          Value: false
+        panda_link2:
+          Value: false
+        panda_link3:
+          Value: false
+        panda_link4:
+          Value: false
+        panda_link5:
+          Value: false
+        panda_link6:
+          Value: false
+        panda_link7:
+          Value: false
+        panda_link8:
+          Value: false
+        panda_rightfinger:
+          Value: false
+        world:
+          Value: false
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          panda_link0:
+            panda_link1:
+              panda_link2:
+                panda_link3:
+                  panda_link4:
+                    panda_link5:
+                      panda_link6:
+                        panda_link7:
+                          panda_link8:
+                            panda_hand:
+                              camera_link:
+                                camera_link_optical:
+                                  {}
+                              panda_leftfinger:
+                                {}
+                              panda_rightfinger:
+                                {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -336,7 +397,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 1.7823717594146729
+      Distance: 1.5056530237197876
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -351,10 +412,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: -0.3449999988079071
+      Pitch: 0.20000013709068298
       Target Frame: world
       Value: Orbit (rviz_default_plugins)
-      Yaw: 5.655184268951416
+      Yaw: 4.905186653137207
     Saved: ~
 Window Geometry:
   Camera:
@@ -370,11 +431,11 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd00000002000000000000012b0000022ffc0200000006fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000100044006900730070006c006100790073000000019900000182000000c900fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a0056006900650077007300000001c000000213000000a400fffffffb0000001200530065006c0065006300740069006f006e00000001c0000002130000005c00fffffffb0000000c00430061006d00650072006101000001a40000022f0000002800ffffff000000020000036700000188fc0100000001fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000000000000367000001f300ffffff000002360000022f00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000002000000000000020d0000021dfc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a0056006900650077007300000001c000000213000000a400fffffffb0000001200530065006c0065006300740069006f006e00000001c0000002130000005c00fffffffb0000000c00430061006d00650072006101000001b60000021d0000002800ffffff00000002000005220000019afc0100000002fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000000000003c0000001f300fffffffb000000100044006900730070006c00610079007301000003c60000015c0000015600ffffff0000030f0000021d00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Views:
     collapsed: false
-  Width: 871
+  Width: 1314
   X: 0
   Y: 40

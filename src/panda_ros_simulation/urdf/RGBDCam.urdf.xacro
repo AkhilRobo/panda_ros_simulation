@@ -8,7 +8,9 @@
         <geometry>
           <box size="0.04 0.14 0.018" />
         </geometry>
-        <material name="red" />
+        <material name="green">
+          <color rgba="0.0 1.0 0.0 1.0" />
+        </material>
       </visual>
     </link>
 
@@ -19,7 +21,7 @@
       <parent link="${cam_parent}" />
       <child link="camera_link" />
       <!-- Mount slightly ahead of gripper -->
-      <origin rpy="0 0 0" xyz="0.03 0.002 0.04" />
+      <origin rpy="0 ${-pi/2} 0" xyz="0.03 0.002 0.04" />
     </joint>
 
     <!-- Optical frame (required for Gazebo + ROS TF consistency) -->
@@ -32,7 +34,7 @@
     <!-- Gazebo sensor definition -->
 
     <gazebo reference="camera_link">
-      <material>Gazebo/Red</material>
+      <material>Gazebo/Green</material>
 
       <sensor name="camera" type="depth">
         <pose> 0 0 0 0 0 0 </pose>
