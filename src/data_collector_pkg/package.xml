@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>data_collector_pkg</name>
+  <version>0.0.1</version>
+  <description>Package for collecting RGB and depth frames from Gazebo for training data</description>
+
+  <maintainer email="akhil@example.com">Akhil</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Core dependencies -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <!-- Runtime and build dependencies -->
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
+
+  <!-- OpenCV (system dependency) -->
+  <exec_depend>libopencv-dev</exec_depend>
+
+  <!-- For future compatibility -->
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
